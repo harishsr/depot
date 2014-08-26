@@ -25,6 +25,9 @@
         <li><%= link_to("Store", store_path) %></li>
         <li><%= link_to "Products", products_path %></li>
       </ul>
+      <p id="load_time">
+        Page loaded on <%= time_loaded %>.
+      </p>
     </div>
     <div id="main">
       <%= yield %>
