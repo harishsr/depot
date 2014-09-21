@@ -54,7 +54,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    begin
     @user.destroy
+    flash[:notice] = "User #{@user.name} deleted."
+    rescue StandardError => e
+      flash[:notice] = e.message
+    end
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
@@ -71,4 +76,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation)
     end
+
 end
